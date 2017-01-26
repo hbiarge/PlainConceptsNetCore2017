@@ -1,0 +1,59 @@
+@model Authorization.ViewModels.Products.EditProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-md-7 col-sm-6">
+        <div>
+            <h4>Product</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Product.Category)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Product.Category)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Product.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Product.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Product.Price)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Product.Price)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Product.ProductType)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Product.ProductType)
+                </dd>
+            </dl>
+        </div>
+        <p>
+            <a asp-action="Edit" asp-route-id="@Model.Product.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </p>
+    </div>
+    <div class="col-md-5 col-sm-6">
+        <h4>Apply discount</h4>
+        <hr />
+        <form class="form-inline" asp-controller="Products" asp-action="Discount" method="post">
+            <input type="hidden" name="id" value="@Model.Product.Id" />
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control input-sm" />
+                <span asp-validation-for="Discount" class="text-danger" />
+            </div>
+            <button type="submit" class="btn btn-primary">Apply</button>
+        </form>
+    </div>
+</div>
